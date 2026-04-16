@@ -1,2 +1,7 @@
 Flask==3.0.3
-
+gunicorn
+flask-cors
+pandas
+numpy
+scikit-learn
+joblib
