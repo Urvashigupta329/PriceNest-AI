@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.predictionRoutes = void 0;
+const express_1 = require("express");
+const validate_1 = require("../middleware/validate");
+const asyncHandler_1 = require("../utils/asyncHandler");
+const prediction_controller_1 = require("../controllers/prediction.controller");
+const prediction_service_1 = require("../services/prediction.service");
+exports.predictionRoutes = (0, express_1.Router)();
+exports.predictionRoutes.post("/", (0, validate_1.validateBody)(prediction_service_1.predictSchema), (0, asyncHandler_1.asyncHandler)((req, res) => prediction_controller_1.PredictionController.predict(req, res)));

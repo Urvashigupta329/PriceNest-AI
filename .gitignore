@@ -1,0 +1,16 @@
+# Node
+**/node_modules/
+**/.env
+
+# Python
+ml-api/**/.venv/
+ml-api/**/__pycache__/
+ml-api/models/
+
+# OS / Editors
+.DS_Store
+*.log
+.cursor/
+**/.idea/
+**/.vscode/
+

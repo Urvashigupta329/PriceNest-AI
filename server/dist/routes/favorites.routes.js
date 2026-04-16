@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.favoritesRoutes = void 0;
+const express_1 = require("express");
+const asyncHandler_1 = require("../utils/asyncHandler");
+const auth_1 = require("../middleware/auth");
+const favorites_controller_1 = require("../controllers/favorites.controller");
+exports.favoritesRoutes = (0, express_1.Router)();
+exports.favoritesRoutes.use(auth_1.requireAuth);
+exports.favoritesRoutes.get("/", (0, asyncHandler_1.asyncHandler)((req, res) => favorites_controller_1.FavoritesController.list(req, res)));
+exports.favoritesRoutes.post("/:propertyId", (0, asyncHandler_1.asyncHandler)((req, res) => favorites_controller_1.FavoritesController.add(req, res)));
+exports.favoritesRoutes.delete("/:propertyId", (0, asyncHandler_1.asyncHandler)((req, res) => favorites_controller_1.FavoritesController.remove(req, res)));

@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.analyticsRoutes = void 0;
+const express_1 = require("express");
+const validate_1 = require("../middleware/validate");
+const asyncHandler_1 = require("../utils/asyncHandler");
+const analytics_service_1 = require("../services/analytics.service");
+const analytics_controller_1 = require("../controllers/analytics.controller");
+exports.analyticsRoutes = (0, express_1.Router)();
+exports.analyticsRoutes.get("/trend", (0, validate_1.validateQuery)(analytics_service_1.analyticsQuerySchema), (0, asyncHandler_1.asyncHandler)((req, res) => analytics_controller_1.AnalyticsController.trend(req, res)));

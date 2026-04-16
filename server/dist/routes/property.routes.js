@@ -1,0 +1,17 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.propertyRoutes = void 0;
+const express_1 = require("express");
+const validate_1 = require("../middleware/validate");
+const asyncHandler_1 = require("../utils/asyncHandler");
+const auth_1 = require("../middleware/auth");
+const property_controller_1 = require("../controllers/property.controller");
+const property_service_1 = require("../services/property.service");
+exports.propertyRoutes = (0, express_1.Router)();
+exports.propertyRoutes.get("/", (0, validate_1.validateQuery)(property_service_1.listPropertiesQuerySchema), (0, asyncHandler_1.asyncHandler)((req, res) => property_controller_1.PropertyController.list(req, res)));
+exports.propertyRoutes.get("/search-natural", (0, validate_1.validateQuery)(property_service_1.naturalSearchQuerySchema), (0, asyncHandler_1.asyncHandler)((req, res) => property_controller_1.PropertyController.searchNatural(req, res)));
+exports.propertyRoutes.get("/:id", (0, asyncHandler_1.asyncHandler)((req, res) => property_controller_1.PropertyController.getById(req, res)));
+exports.propertyRoutes.get("/:id/recommendations", (0, validate_1.validateQuery)(property_service_1.recommendationsQuerySchema), (0, asyncHandler_1.asyncHandler)((req, res) => property_controller_1.PropertyController.recommendations(req, res)));
+exports.propertyRoutes.post("/", auth_1.requireAuth, auth_1.requireAdmin, (0, validate_1.validateBody)(property_service_1.createPropertySchema), (0, asyncHandler_1.asyncHandler)((req, res) => property_controller_1.PropertyController.create(req, res)));
+exports.propertyRoutes.put("/:id", auth_1.requireAuth, auth_1.requireAdmin, (0, validate_1.validateBody)(property_service_1.updatePropertySchema), (0, asyncHandler_1.asyncHandler)((req, res) => property_controller_1.PropertyController.update(req, res)));
+exports.propertyRoutes.delete("/:id", auth_1.requireAuth, auth_1.requireAdmin, (0, asyncHandler_1.asyncHandler)((req, res) => property_controller_1.PropertyController.remove(req, res)));
